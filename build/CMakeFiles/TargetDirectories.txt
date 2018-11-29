@@ -1,1 +1,0 @@
-/home/smbzhang/cmakeLearn/build/CMakeFiles/hello.dir
