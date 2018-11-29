@@ -1,1 +1,4 @@
 ADD_EXECUTABLE(hello main.c)
+
+MESSAGE(STATUS ".........................." ${PROJECT_BINARY_DIR})
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
