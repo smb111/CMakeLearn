@@ -1,0 +1,7 @@
+因为需要进行安装，并且安装的时候使用了 相对路径 进行配置，所以编译的时候需要指定 CMAKE_INSTALL_PREFIX  参数的位置
+
+cmake -DCMAKE_INSTALL_PREFIX=/tmp/t2/usr ..
+
+进入 build 路径下面执行 上面的语句
+
+会安装到 /tmp/t2 下面
