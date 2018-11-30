@@ -18,3 +18,6 @@ MESSAGE(STATUS "*****This is the hello_static OUTPUT_NAME : ******" ${OUTPUT_VAL
 SET_TARGET_PROPERTIES(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 SET_TARGET_PROPERTIES(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
+# 设置动态库版本号 使用 SET_TARGET_PROPERTIES 
+SET_TARGET_PROPERTIES(hello PROPERTIES VERSION 1.2 SOVERSION 1) 
+# 在build/lib 目录会生成：libhello.so.1.2 libhello.so.1->libhello.so.1.2 libhello.so ->libhello.so.1
