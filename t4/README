@@ -1,0 +1,31 @@
+我们现在需要完成的任务是将目标文件链接到 libhello，这里我们需要引入两个新的指令
+LINK_DIRECTORIES 和TARGET_LINK_LIBRARIES
+
+LINK_DIRECTORIES 的全部语法是：
+LINK_DIRECTORIES(
+		directory1 directory2 ...
+		)
+	这个指令非常简单，添加非标准的共享库搜索路径，比如，在工程内部同时存在共享库和可执行二进制，在编译时就需要指定一下这些共享库的路径。这个例子中我们没有用到这个指令。
+
+	TARGET_LINK_LIBRARIES 的全部语法是:
+	TARGET_LINK_LIBRARIES(
+			target 
+			library1<debug | optimized> library2...
+			)
+	这个指令可以用来为 target 添加需要链接的共享库，本例中是一个可执行文件，但是同样可以用于为自己编写的共享库添加共享库链接。
+
+	为了解决我们前面遇到的HelloFunc 未定义错误，我们需要作的是向src/CMakeLists.txt 中添加如下指令：
+	TARGET_LINK_LIBRARIES(main hello)
+	也可以写成
+	TARGET_LINK_LIBRARIES(main libhello.so) 
+	这里的hello 指的是我们上一节构建的共享库libhello.
+
+	让我们来检查一下main 的链接情况：
+	ldd src/main linux-gate.so.1 => (0xb7ee7000)
+	libhello.so.1 => /usr/lib/libhello.so.1 (0xb7ece000)
+	libc.so.6 => /lib/libc.so.6 (0xb7d77000)/lib/ld-linux.so.2 (0xb7ee8000)
+	可以清楚的看到main 确实链接了共享库libhello ，而且链接的是动态库libhello.so.1
+
+	那如何链接到静态库呢？
+	方法很简单：将TARGET_LINK_LIBRRARIES 指令修改为:T
+	ARGET_LINK_LIBRARIES(main libhello.a)
