@@ -21,3 +21,15 @@ SET_TARGET_PROPERTIES(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 # 设置动态库版本号 使用 SET_TARGET_PROPERTIES 
 SET_TARGET_PROPERTIES(hello PROPERTIES VERSION 1.2 SOVERSION 1) 
 # 在build/lib 目录会生成：libhello.so.1.2 libhello.so.1->libhello.so.1.2 libhello.so ->libhello.so.1
+
+# 安装 共享库 静态和动态库  &&  头文件 hello.h,  同样使用 相对路径进行安装 编译指定 CMAKE_INSTALL_PREFIX
+INSTALL (
+TARGETS hello hello_static 
+LIBRARY DESTINATION lib
+ARCHIVE DESTINATION lib
+)
+
+INSTALL(
+FILES hello.h
+DESTINATION include/hello
+)

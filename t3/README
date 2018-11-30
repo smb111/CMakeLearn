@@ -1,0 +1,5 @@
+注意，静态库要使用ARCHIVE 关键字通过: 
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+make 
+make install 
+我们就可以将头文件和共享库安装到系统目录/usr/lib 和/usr/include/hello 中了。
